@@ -1,2 +1,12 @@
-<h1>Angular Calculator</h1>
-<h2>A simple calculator with login</h2>
+<h1 class="ui header">Custom Login Page with Sign In Widget</h1>
+<div *ngIf="!(authStateService.authState$ | async)?.isAuthenticated">
+  <p>If you‘re viewing this page then you have successfully started this Angular application.</p>
+</div>
+
+<div *ngIf="(authStateService.authState$ | async)?.isAuthenticated && userName">
+  <h2>Welcome back, {{ userName }}!</h2>
+  <p>
+    You have successfully authenticated against your Okta org, and have been redirected back to this application.  You now have an ID Token and access token in local storage.
+    Visit the <a href="/profile">My Profile</a> page to take a look inside the ID Token.
+  </p>  
+</div>

@@ -1,13 +1,18 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Injector, NgModule } from '@angular/core';
+import { Router, RouterModule, Routes } from '@angular/router';
+
+import { OktaCallbackComponent, OktaAuthGuard } from '@okta/okta-angular';
 
 import { HomeComponent } from './home/home.component';
-import { CalculatorComponent } from './calculator/calculator.component';
+import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'calculator', component: CalculatorComponent}
-];
+  {path: 'login/callback', component: OktaCallbackComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'profile', component: ProfileComponent, canActivate: [OktaAuthGuard]},
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
